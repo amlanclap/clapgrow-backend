@@ -21,12 +21,9 @@ const createOneTimeTask = async (req, res) => {
             .status(errorCode.dataNotmatch)
             .send({ status: false, error: v.errors, message: InputError(v.errors) });
     }
-
     var DataSet = {
         ...req.body
     }
-    console.log("DataSet", DataSet)
-
     await oneTimeTaskSchema.create(DataSet)
         .then((data) => {
             res.status(errorCode.success).json({

@@ -2,7 +2,6 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('./../../db');
 
 const oneTimeTask = sequelize.define('oneTimeTask', {
-
     taskName: {
         type: DataTypes.STRING,
         allowNull: false
