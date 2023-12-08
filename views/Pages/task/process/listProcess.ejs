@@ -1,0 +1,192 @@
+<%- include('../../../Partials/head'); %>
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+
+    <style>
+        .modal-dialog {
+            max-width: 500px;
+        }
+
+        ul.spesialnav {
+            margin-bottom: 0;
+        }
+
+        .newstlenav ul.leftnv li {
+            margin-bottom: 1px;
+        }
+
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #50A5F1;
+            border-color: #50A5F1;
+        }
+
+        .page-item .page-link {
+            color: #333;
+        }
+
+        .page-item .page-link:hover {
+            color: #333;
+        }
+
+        .selectize-input {
+            background: none !important;
+            border-bottom: #ccc 1px solid !important;
+            border-radius: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            margin-top: 3px !important;
+            border: none !important;
+            border-bottom: #ccc 1px solid !important;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <section class="mainouterwrap">
+            <div class="row customrow">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <%- include('../../../Partials/sidebar'); %>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="rightpannelsec">
+                        <div class="rightheaderbox">
+                            <%- include('../../../Partials/header'); %>
+                                <div class="col-xl-12 col-lg-12">
+
+                                    <div class="customseptwo"></div>
+                                </div>
+
+                                <div class="col-xl-12 col-lg-12">
+
+                                </div>
+
+                        </div>
+                        <!-- content sec -->
+                        <button type="button" class="btn btn-info"
+                            onclick="javascript:window.location = '/api/v1/admin/AddProcess';">
+                            Add Process</button>
+
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-xl-12 col-lg-12">
+                                    <table id="example" class="display tabtable table" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+
+                                                <th width="65%">Process Name</th>
+                                                <th width="15%">Total Stuck</th>
+                                                <th width="20%" style="text-align:center;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let data of datap) {%>
+                                                <tr>
+
+                                                    <td>
+                                                        <%=data.process_name %>
+                                                    </td>
+                                                    <td><a href="initiated_process_specific_stuck.php?procid=NDYx"
+                                                            style="color:red;border:none;" target="_blank">0</a></td>
+                                                    <td align="center"><a title="Edit"
+                                                            href="realprocess_manage.php?id=NDYx"><i class="fa fa-edit"
+                                                                aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                                                            title="View Initiations"
+                                                            href="initiated_process_specific.php?procid=NDYx"><i
+                                                                class="fa fa-eye"
+                                                                aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                                                            title="Download Csv"
+                                                            href="process_specific_csv_new.php?procid=NDYx"><i
+                                                                class="fa fa-download"
+                                                                aria-hidden="true"></i></a>&nbsp;&nbsp;<a title="Delete"
+                                                            onclick="javascript:return confirm('Please note by deleting everything associated with this process will be permanently deleted. All done steps, undone steps, form fields all will be permanently deleted. Are you sure to delete?');"
+                                                            href="delete_process.php?procidenc=NDYx"
+                                                            style="color:red;border-color:red;"><i class="fa fa-times"
+                                                                aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                                                            title="Archive"
+                                                            href="initiated_tobecompleted.php?procid=NDYx"
+                                                            style="color:red;border-color:red;"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
+
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- content sec end -->
+
+                        <div class="rightfooterbox">
+                            <footer class="adminfootersec">
+                                <div class="container-fluid">
+                                    <p>Copyright © 2022-2023 <strong><a href="index.php">Clap Grow</a>.</strong> All
+                                        rights
+                                        reserved.</p>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JS files -->
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="https://clapgrow.com/admin/js/jquery-ui.min.js"></script>
+        <script src="https://clapgrow.com/admin/js/jquery.validate.js"></script>
+        <script src="https://clapgrow.com/admin/js/selectize.js"></script>
+        <link rel="stylesheet" href="https://clapgrow.com/admin/css/normalize.css">
+        <link rel="stylesheet" href="https://clapgrow.com/admin/css/selectize.default.css">
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="https://clapgrow.com/admin/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://clapgrow.com/admin/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <!--<script src="js/dashboard.js"></script>-->
+        <!-- AdminLTE for demo purposes -->
+        <script type="text/javascript" language="javascript"
+            src="https://clapgrow.com/admin/js/jquery.dataTables.js"></script>
+        <script src="https://clapgrow.com/admin/js/jquery.modal.min.js"></script>
+        <script src="https://clapgrow.com/admin/js/clapgroww_new.js"></script>
+        <script src="https://clapgrow.com/admin/js/fm.tagator.jquery.js"></script>
+
+        <script>
+            $('.toggle').click(function (e) {
+                e.preventDefault();
+                $('.accordion li a').removeClass("openclass");
+
+                $(this).addClass("openclass");
+
+                var $this = $(this);
+
+                if ($this.next().hasClass('show')) {
+                    $this.next().removeClass('show');
+                    $this.next().slideUp(350);
+                    $(this).removeClass("openclass");
+                } else {
+                    $this.parent().parent().find('li .inner').removeClass('show');
+                    $this.parent().parent().find('li .inner').slideUp(350);
+                    $this.next().toggleClass('show');
+                    $this.next().slideToggle(350);
+                }
+            });
+
+        </script>
+
+    </body>
+
+    </html>

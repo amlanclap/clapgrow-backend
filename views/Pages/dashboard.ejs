@@ -1,0 +1,407 @@
+<%- include('../Partials/head'); %>
+    <style>
+        .modal-dialog {
+            max-width: 500px;
+        }
+
+        ul.spesialnav {
+            margin-bottom: 0;
+        }
+
+        .newstlenav ul.leftnv li {
+            margin-bottom: 1px;
+        }
+
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #50A5F1;
+            border-color: #50A5F1;
+        }
+
+        .page-item .page-link {
+            color: #333;
+        }
+
+        .page-item .page-link:hover {
+            color: #333;
+        }
+
+        .selectize-input {
+            background: none !important;
+            border-bottom: #ccc 1px solid !important;
+            border-radius: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            margin-top: 3px !important;
+            border: none !important;
+            border-bottom: #ccc 1px solid !important;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <section class="mainouterwrap">
+            <div class="row customrow">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <%- include('../Partials/sidebar'); %>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="rightpannelsec">
+                        <div class="rightheaderbox">
+                            <%- include('../Partials/header'); %>
+                                <div class="col-xl-12 col-lg-12">
+                                    <div class="customseptwo"></div>
+                                </div>
+
+                                <div class="col-xl-12 col-lg-12">
+                                    <form name="filterform" id="filtrationfrm" method="post" action="">
+                                        <div class="filtersec advserchboxall">
+                                            <div class="rtboxtitle">
+
+                                                <h2>Filters</h2>
+                                                <!--<input type="text" name="srchtag" class="tagator" id="srchtag"><a href="javascript:void(0);" id="srchtagbtn">Search</a>-->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-2 col-lg-2">
+                                                    <input type="text" name="frmdate_task" id="frmdate_task"
+                                                        class="advsernew mynewdatepicker_admin" placeholder="From Date"
+                                                        onfocus="(this.type='date')">
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2">
+                                                    <input type="text" name="todate_task" id="todate_task"
+                                                        class="advsernew mynewdatepicker_admin" placeholder="To Date"
+                                                        onfocus="(this.type='date')">
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2">
+                                                    <select class="advsernew" id="dash_task_type_admin"
+                                                        name="dash_task_type">
+                                                        <option value="3">One-time task</option>
+                                                        <option value="2">Scheduled task</option>
+                                                        <option value="1" selected="">Process</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2" id="dash_task_type_name_wrap">
+                                                    <select class="advsernew" id="dash_task_type_name_admin"
+                                                        name="dash_task_type_name">
+                                                        <option value="" selected>Select Process</option>
+                                                        <option value="1">Texmaco</option>
+                                                        <option value="2">Master Process</option>
+                                                        <option value="4">Pawnji's Test</option>
+                                                        <option value="23">Project Analysis</option>
+                                                        <option value="66">aasd</option>
+                                                        <option value="193">Vijender Sir Test</option>
+                                                        <option value="454">new process up</option>
+                                                        <option value="457">New simple process</option>
+                                                        <option value="458">Test process for dependent work</option>
+                                                        <option value="460">New process has no dependent</option>
+                                                        <option value="461">Process attach form when edit</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2">
+                                                    <select class="advsernew" id="dash_task_status_admin"
+                                                        name="dash_task_status">
+                                                        <option value="0" selected="">Pending</option>
+                                                        <option value="1">Done</option>
+                                                        <option value="2">On-time</option>
+                                                        <option value="3">Delayed</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2" id="dash_doer_wrap">
+                                                    <select class="advsernew" id="actcompdoer_admin" name="actcompdoer">
+                                                        <option value="" selected>Select Doer</option>
+                                                        <option value="2">Vidul Prothi</option>
+                                                        <option value="3">Manish Prasad2</option>
+                                                        <option value="4">S Das</option>
+                                                        <option value="5">Jai Kejriwal</option>
+                                                        <option value="6">New admin</option>
+                                                        <option value="7">Chiranjibi</option>
+                                                        <option value="8">Sayan Koley</option>
+                                                        <option value="9">Ayan</option>
+                                                        <option value="10">Sujoy Ghosh</option>
+                                                        <option value="76">ravan' Mukherjee1</option>
+                                                        <option value="147">Test</option>
+                                                        <option value="364">Vidul Prothi1</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="pdfwrapbox">
+                                                        <input type="hidden" name="pdfcomplocation"
+                                                            id="pdfcomplocation">
+                                                        <input type="hidden" name="pdftab" id="pdftab">
+                                                        <button type="submit" name="dashdownloadpdf"
+                                                            id="dashdownloadpdf" class="btn btn-primary custombut"
+                                                            disabled>Download Pdf</button>
+                                                        &nbsp;&nbsp;<button type="submit" name="dashdownloadcsv"
+                                                            id="dashdownloadcsv" class="btn btn-primary custombut"
+                                                            disabled>Download Csv</button> <span class="dashpdftxt">(
+                                                            Max
+                                                            date
+                                                            differnce allowed is 45 days )</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                        </div>
+                        <div class="rightbodybox">
+                            <div class="maintabcontent" id="myalltabwrap">
+                                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                    <li class="nav-item nav-one" role="presentation">
+                                        <a class="nav-link myopentabadmin" href="javascript:void(0);" data-id="exp1"
+                                            id="tab_exp1"><img src="images/newdesign/ic01.png" alt="">Overdue - <span
+                                                id="overduecnt_dash">46</span></a>
+                                    </li>
+                                    <li class="nav-item nav-two" role="presentation">
+                                        <a class="nav-link current myopentabadmin" href="javascript:void(0);"
+                                            data-id="exp2" id="tab_exp2"><img src="images/newdesign/ic02.png" alt="">
+                                            Due Today - <span id="mytodaypendmastcnt_dash">0</span></a>
+                                    </li>
+                                    <li class="nav-item nav-three" role="presentation">
+                                        <a class="nav-link myopentabadmin" href="javascript:void(0);" data-id="exp3"
+                                            id="tab_exp3"><img src="images/newdesign/ic03.png" alt=""> Due This Week -
+                                            <span id="mytothisweekmastcnt_dash">0</span></a>
+                                    </li>
+                                    <li class="nav-item nav-four" role="presentation" style="display:none;">
+                                        <a class="nav-link myopentabadmin" href="javascript:void(0);" data-id="exp4"
+                                            id="tab_exp4"><img src="images/newdesign/ic04.png" alt=""> Incoming - <span
+                                                id="incomingcnt_dash"></span></a>
+                                    </li>
+                                    <li class="nav-item nav-eight" role="presentation">
+                                        <a class="nav-link myopentabadmin" href="javascript:void(0);" data-id="exp8"
+                                            id="tab_exp8" style="display:none;"><img src="images/newdesign/ic01.png"
+                                                alt="">Critical Tasks - <span id="criticalcnt_dash"></span></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="tabtextwrapsec" style="position:relative;">
+                                <h4 style="font-size:20px;font-weight:600;color:#50A5F1;" id="acttaskheading">Process
+                                </h4>
+                                <div class="tabcontbodytxt  filtersec onlypgignew" id="mypagi_page_wrap">
+                                    <select name="mypagi_page" id="mypagi_page" style="display:none;">
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                                <div class="expandingtab hide" id="exp1">
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp1_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp1_content">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="expandingtab" id="exp2">
+                                    <!-- Tab Content Start -->
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp2_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp2_content">
+
+
+                                            <p>No data found</p>
+                                            <div class="modal fade markcmpltmodal" id="myModalmarkasdone" role="dialog">
+                                                <div class="modal-dialog">
+
+
+                                                    <div class="modal-content">
+                                                        <div class="modal-header taskmodlhdr"
+                                                            style="background-color:#50A5F1;">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title" style="font-size:16px;">Complete
+                                                                Tasks
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="cmntstep">
+                                                                <div class="sepbyone">
+                                                                    <form id="customersupportfrm_dash"
+                                                                        style="width:100%;">
+                                                                        <div class="row">
+
+                                                                            <div class="col-sm-12">
+                                                                                <label>Enter Message</label>
+                                                                                <textarea class="compltextara"
+                                                                                    name="markingcomment"
+                                                                                    placeholder="Enter text"></textarea>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <label>File Upload</label>
+                                                                                <input type="file" name="myfile"
+                                                                                    class="compltupldfile" id="" />
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <label>Proceed to Next Step?</label>
+                                                                                <select name="procdnextstep">
+                                                                                    <option value="1">Approved</option>
+                                                                                    <option value="0">Rejected</option>
+                                                                                    <!--<option value="2">Hold</option>-->
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <input type="hidden" name="markingid"
+                                                                                    id="markingid">
+                                                                                <input type="hidden"
+                                                                                    name="currentactivetab"
+                                                                                    id="currentactivetab" value="exp2">
+                                                                                <input type="submit" name="stepcomplete"
+                                                                                    id="stepcomplete" value="Submit"
+                                                                                    class="btn-hover color-9" />&nbsp;&nbsp;
+                                                                                <p id="studentsupportloader2"
+                                                                                    style="display:none;"><img
+                                                                                        src="images/spinner_load.gif">
+                                                                                </p>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Tab Content End -->
+
+                                </div>
+
+                                <div class="hide expandingtab" id="exp3">
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp3_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp3_content">
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="hide expandingtab" id="exp4">
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp4_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp4_content">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="hide expandingtab" id="exp5">
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp5_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp5_content">
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="hide expandingtab" id="exp8">
+                                    <div class="tabcontbodytxt">
+                                        <p style="text-align:center;display:none;" id="exp8_loader"><img
+                                                src="images/spinner_load.gif"></p>
+                                        <ul id="exp8_content">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rightfooterbox">
+                            <footer class="adminfootersec">
+                                <div class="container-fluid">
+                                    <p>Copyright © 2022-2023 <strong><a href="index.php">Clap Grow</a>.</strong> All
+                                        rights
+                                        reserved.</p>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JS files -->
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="https://clapgrow.com/admin/js/jquery-ui.min.js"></script>
+        <script src="https://clapgrow.com/admin/js/jquery.validate.js"></script>
+        <script src="https://clapgrow.com/admin/js/selectize.js"></script>
+        <link rel="stylesheet" href="https://clapgrow.com/admin/css/normalize.css">
+        <link rel="stylesheet" href="https://clapgrow.com/admin/css/selectize.default.css">
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="https://clapgrow.com/admin/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://clapgrow.com/admin/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <!--<script src="js/dashboard.js"></script>-->
+        <!-- AdminLTE for demo purposes -->
+        <script type="text/javascript" language="javascript"
+            src="https://clapgrow.com/admin/js/jquery.dataTables.js"></script>
+        <script src="https://clapgrow.com/admin/js/jquery.modal.min.js"></script>
+        <script src="https://clapgrow.com/admin/js/clapgroww_new.js"></script>
+        <script src="https://clapgrow.com/admin/js/fm.tagator.jquery.js"></script>
+        <script>
+            $('.toggle').click(function (e) {
+                e.preventDefault();
+                $('.accordion li a').removeClass("openclass");
+
+                $(this).addClass("openclass");
+
+                var $this = $(this);
+
+                if ($this.next().hasClass('show')) {
+                    $this.next().removeClass('show');
+                    $this.next().slideUp(350);
+                    $(this).removeClass("openclass");
+                } else {
+                    $this.parent().parent().find('li .inner').removeClass('show');
+                    $this.parent().parent().find('li .inner').slideUp(350);
+                    $this.next().toggleClass('show');
+                    $this.next().slideToggle(350);
+                }
+            });
+
+        </script>
+        <script>
+            $("#actcompdoer_admin").selectize({
+                placeholder: "Select Doer"
+            });
+
+            $("#dash_task_type_name_admin").selectize({
+                normalize: true,
+            });
+
+            $(document).on('click', '#dashdownloadpdf', function () {
+
+                $("#filtrationfrm").attr('action', 'dashboardpdf.php');
+                $("#filtrationfrm").submit();
+                return false;
+
+            });
+
+            $(document).on('click', '#dashdownloadcsv', function () {
+
+                $("#filtrationfrm").attr('action', 'dashboardcsv.php');
+                $("#filtrationfrm").submit();
+
+                return false;
+
+            });
+        </script>
+    </body>
+
+    </html>
